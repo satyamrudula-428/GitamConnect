@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department News Hub - Login</title>
+    <style>
+        /* Patterned Background */
+        body {
+    background-color: #087464;
+    background-image: url("https://www.transparenttextures.com/patterns/ripples.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+
+
+
+        /* Login Container */
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 270px; /* Reduced width */
+        }
+
+        h2 {
+            color: black;
+        }
+
+        input {
+            width: 85%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #087464;
+            border-radius: 5px;
+            color: black;
+        }
+
+        button {
+            background-color: #087464;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #00503C;
+        }
+
+        /* Forgot Password Link */
+        .forgot-password {
+            display: block;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            text-decoration: none;
+            color: #087464;
+            font-weight: bold;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <a href="#" class="forgot-password">Forgot Password?</a>
+        <div id="error-message" class="error"></div>
+        <button onclick="validateLogin()">Login</button>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorMessage = document.getElementById("error-message");
+
+            if (username === "" || password === "") {
+                errorMessage.textContent = "Both fields are required!";
+            } else {
+                errorMessage.textContent = "";
+                alert("Login successful!"); // Replace this with actual authentication logic
+            }
+        }
+    </script>
+
+</body>
+</html>
