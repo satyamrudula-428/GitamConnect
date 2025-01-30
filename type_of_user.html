@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Role</title>
+    <style>
+        body {
+            background-color: #006A4E;
+            color: black;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        h2 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 1100px;
+            padding: 20px;
+        }
+
+        .role-container {
+            width: 300px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 20px;
+            font-size: 24px;
+        }
+
+        .role-container:hover {
+            transform: scale(1.1);
+        }
+
+        .role-container.selected {
+            background-color: #006A4E;
+            color: white;
+        }
+
+        .role-container div {
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #006A4E;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        button:hover {
+            background-color: #00503C;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Choose Your Role</h2>
+
+    <div class="container">
+        <!-- Role containers placed side by side with bigger size -->
+        <div class="role-container" id="studentRole" onclick="selectRole('student')">
+            <div>👩‍🎓 Student</div>
+        </div>
+        <div class="role-container" id="facultyRole" onclick="selectRole('faculty')">
+            <div>👨‍🏫 Faculty</div>
+        </div>
+        <div class="role-container" id="alumniRole" onclick="selectRole('alumni')">
+            <div>🎓 Alumni</div>
+        </div>
+    </div>
+
+    <button id="proceedButton" onclick="proceed()">Continue</button>
+
+    <script>
+        let selectedRole = "";
+
+        function selectRole(role) {
+            // Reset previous selection
+            document.querySelectorAll('.role-container').forEach(option => {
+                option.classList.remove("selected");
+            });
+
+            // Highlight selected option
+            selectedRole = role;
+            document.getElementById(role + "Role").classList.add("selected");
+
+            // Show proceed button
+            document.getElementById("proceedButton").style.display = "block";
+        }
+
+        function proceed() {
+            if (selectedRole) {
+                alert("Proceeding as " + selectedRole);
+                // Redirect based on selection (replace with actual URLs)
+                window.location.href = selectedRole + ".html";
+            }
+        }
+    </script>
+
+</body>
+</html>

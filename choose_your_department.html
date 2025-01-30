@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Department</title>
+    <style>
+        body {
+            background-color: #006A4E;
+            color: black;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        h2 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #006A4E;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #00503C;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Select Your Department and Branch</h2>
+
+    <div class="container">
+        <label for="department">Department</label>
+        <select id="department" onchange="updateBranchOptions()">
+            <option value="btech">B.Tech</option>
+            <option value="mtech">M.Tech</option>
+        </select>
+
+        <label for="branch">Branch</label>
+        <select id="branch">
+            <option value="cse">CSE</option>
+            <option value="ece">ECE</option>
+            <option value="eee">EEE</option>
+            <option value="mech">Mechanical</option>
+            <option value="civil">Civil</option>
+        </select>
+
+        <button onclick="submitSelection()">Submit</button>
+    </div>
+
+    <script>
+        function updateBranchOptions() {
+            const department = document.getElementById('department').value;
+            const branchSelect = document.getElementById('branch');
+
+            // Clear current branch options
+            branchSelect.innerHTML = '';
+
+            // If B.Tech is selected, add B.Tech branches
+            if (department === 'btech') {
+                const branches = ['CSE', 'ECE', 'EEE', 'Mechanical', 'Civil'];
+                branches.forEach(branch => {
+                    const option = document.createElement('option');
+                    option.value = branch.toLowerCase();
+                    option.textContent = branch;
+                    branchSelect.appendChild(option);
+                });
+            } else if (department === 'mtech') {
+                // If M.Tech is selected, add M.Tech branches (can be customized)
+                const branches = ['CSE', 'ECE'];
+                branches.forEach(branch => {
+                    const option = document.createElement('option');
+                    option.value = branch.toLowerCase();
+                    option.textContent = branch;
+                    branchSelect.appendChild(option);
+                });
+            }
+        }
+
+        function submitSelection() {
+            const department = document.getElementById('department').value;
+            const branch = document.getElementById('branch').value;
+
+            alert(`You have selected ${department.toUpperCase()} - ${branch.toUpperCase()}`);
+            // Here you can add further redirection or form submission logic
+        }
+    </script>
+
+</body>
+</html>
