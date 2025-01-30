@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Submission Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #087464;
+        }
+
+        header {
+            background-color: #087464;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            padding: 1rem;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 300px;
+        }
+
+        button {
+            background-color: #087464;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #articles {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #articleList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #articleList li {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Article Submission Portal</h1>
+    </header>
+    <main>
+        <form id="articleForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="title">Article Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="content">Article Content:</label>
+            <textarea id="content" name="content" required></textarea>
+
+            <label for="file">Upload Word Document:</label>
+            <input type="file" id="file" name="file" accept=".doc,.docx">
+
+            <button type="submit">Submit Article</button>
+        </form>
+        <div id="articles">
+            <h2>Published Articles</h2>
+            <ul id="articleList"></ul>
+        </div>
+    </main>
+    <script>
+        document.getElementById('articleForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const file = document.getElementById('file').files[0];
+
+            const articleList = document.getElementById('articleList');
+            const newArticle = document.createElement('li');
+            newArticle.innerHTML = `<h3>${title}</h3><p>${content}</p><small>by ${name} (${email})</small>`;
+
+            if (file) {
+                const fileLink = document.createElement('a');
+                fileLink.href = URL.createObjectURL(file);
+                fileLink.download = file.name;
+                fileLink.textContent = `Download ${file.name}`;
+                newArticle.appendChild(fileLink);
+            }
+
+            articleList.appendChild(newArticle);
+
+            document.getElementById('articleForm').reset();
+        });
+    </script>
+</body>
+</html>
